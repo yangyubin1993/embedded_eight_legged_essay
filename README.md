@@ -1,2 +1,6 @@
-# embedded_eight_legged_essay
-嵌入式八股文
+# 嵌入式八股文
+- 说明
+- C语言基础
+- 计算机网络
+- ARM体系架构
+- RTOS
