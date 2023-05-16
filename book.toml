@@ -1,0 +1,6 @@
+[book]
+authors = ["yangpaopao"]
+language = "zh_CN"
+multilingual = false
+src = "src"
+title = "嵌入式八股文"
