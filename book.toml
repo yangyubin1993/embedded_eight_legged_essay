@@ -3,7 +3,7 @@ authors = ["yangpaopao"]
 language = "zh_CN"
 multilingual = false
 src = "src"
-title = "嵌入式八股文"
+title = "嵌入式面试八股文"
 
 # add the emoji preprocessor
 [preprocessor.emojicodes]
