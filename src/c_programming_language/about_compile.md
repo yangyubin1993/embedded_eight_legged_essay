@@ -30,3 +30,23 @@ C语言编译相关知识
     - [Why is the .bss segment required?](https://stackoverflow.com/questions/9535250/why-is-the-bss-segment-required)
     - [深入理解BSS段与data段的区别](https://www.jianshu.com/p/ddfb284c1f7a)
     </details>
+
+2. gcc的编译有哪几个过程，每个过程的作用是什么？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+3. makefile的作用？
+
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+4. CMake的作用？
+
+    <details>
+      <summary>参考答案</summary>
+
+    </details>

@@ -133,3 +133,215 @@ C语言基础语法知识
       参考资料：
       - [What are the reasons for segmentation fault in Embedded C? How do you avoid these errors?](https://www.interviewbit.com/embedded-c-interview-questions/#reasons-for-segmentation-fault-to-occur-how-to-avoid-it)
     </details>
+
+7. `const int* p`，`int* const p`，`const int* const p`这三者有什么区别？
+   <details>
+      <summary>参考答案</summary>
+
+      1. `const int* p`中`const`修饰的是`*p`，即指针`p`所指的对象。也就是说`p`的值是可以变化的（指向的地址可以变化），但`*p`不可以（指向的值不可以变化）。如下：
+   
+      ```c
+      int main() {
+          int a = 1;
+          int b = 2;
+          const int* p = &a;
+          p = &b;   // ok
+          *p = 3;   // error
+          return 0;
+      }
+      ```
+
+      2. `int* const p`中`const`修饰的是`p`，即指针`p`。也就是说`p`的值是不可以变化的（指向的地址不可以变化），但`*p`可以（指向的值可以变化）。如下：
+   
+      ```c
+      int main() {
+          int a = 1;
+          int b = 2;
+          int* const p = &a;
+          *p = 2;   // ok
+          p = &b;   // error
+          return 0;
+      }
+      ```
+
+      3. `const int* const p`中`const`既修饰指针`p`，也修饰针对所指的地址中的内容`*p`。即指针`p`不可变化，且指针所指向的地址中的值`*p`也不可变化。如下：
+   
+      ```c
+      int main() {
+          int a = 1;
+          int b = 2;
+          const int* const p = &a;
+          *p = 2;   // error
+          p = &b;   // error
+          return 0;
+      }
+      ```
+      
+    </details>
+
+7. `extern "C"`的作用是什么？
+    <details>
+      <summary>参考答案</summary>
+
+      `extern C`主要用于`C++`程序中，作用于程序的链接过程。如果接触过`C++`会知道`C++`支持函数的重载。即如下`C++`代码的定义是允许的：
+
+      ```c++
+      int func(int a) {
+          return a + 1;
+      }
+      
+      long func(long b) {
+          return b + 2;
+      }
+      
+      int main() {
+          func(1);    // call func(int a)
+          func(1L);   // call func(long b)
+          return 0;
+      }
+      ```
+
+      为支持重载功能，编译器在解析函数时使用函数名及形参类型改编形成新的函数签名，从而保证两个重载函数拥有不同的符号，该过程称为`name mangling`。如上面代码生成的二进制代码中，两个重载函数的实际名称分别为：`__Z4funci`和`__Z4funcl`:
+
+      ```
+      eric% nm a.out
+      0000000100003f50 T __Z4funci
+      0000000100003f60 T __Z4funcl
+      0000000100000000 T __mh_execute_header
+      0000000100003f80 T _main
+                       U dyld_stub_binder
+      ```
+      
+      其中`__Z`表示该符号名称是被C++编译器改编的，而`Z`后面的数字4指实际函数名称(`func`)为4个字符。
+
+      然而C程序中不支持重载，即函数命名是怎样的，其在二进制中看到的就是怎样的。如下为`func`函数在二进制中的符号：
+
+      ```
+      eric % nm a.out
+      0000000100000000 T __mh_execute_header
+      0000000100003f80 T _func
+      0000000100003f90 T _main
+                       U dyld_stub_binder
+      ```
+
+      其中`_func`中的前缀`_`为C语言调用约定(C calling convention)要求。
+
+      因此，若要在C++程序中调用C代码，就需要将被调用函数声明在`extern C`中，表示所调用的函数遵循C语言调用约定。否则编译过程会出现符号找不到问题。
+  
+      参考资料：
+      - [史上最详细的C++函数重载机制](https://blog.csdn.net/qq_41033011/article/details/107762289)
+      - [Name mangling in C++](https://thecandcppclub.com/deepeshmenon/chapter-5-the-philosophy-of-c/490/#Name-mangling-in-C++)
+      - [C Calling Convention](https://gcc.gnu.org/onlinedocs/gcc-5.2.0/gnat_ugn/C-Calling-Convention.html#C-Calling-Convention)
+      - [extern C百度百科](https://baike.baidu.com/item/extern%20%22C%22/15267013)
+    </details>
+
+8. 什么是字节对齐（数据结构对齐）？
+    <details>
+      <summary>参考答案</summary>
+
+      在C语言中，数据结构对齐主要用于结构体定义中。现代CPU在数据结构对齐的前提下可以获得更好的读写效率。数据结构对齐的定义是：
+
+      ```
+      若内存地址`a`是`n`的倍数（其中`n`是2的幂），那么`a`就是n字节对齐的。
+      ```
+
+      C程序在x86构架上对不同类型的字节对齐有不同的要求，以64位x86架构为例：
+
+      ```
+      1个char类型(1个字节长度)为`1字节对齐`
+      1个short类型(2个字节长度)为`2字节对齐`
+      1个int类型(4个字节长度)为`4字节对齐`
+      1个long类型(8个字节长度)为`8字节对齐`
+      1个floag类型(4个字节长度)为`4字节对齐`
+      1个double类型(8个字节长度)为`8字节对齐`
+      1个指针类型(8个字节长度)为`8字节对齐`
+      ```
+
+      也即如果有如下结构体，其结构体大小在64位x86上应该为`24`个字节:
+
+      ```c
+      struct s {
+          char a;   // 1 byte
+                    // 1 byte padding
+          short b;  // 2 bytes
+          char c;   // 1 byte
+                    // 3 bytes padding
+          int d;    // 4 bytes
+          float e;  // 4 bytes
+          double f; // 8 bytes
+      };
+      ```
+
+      在上面的结构体中，成员`a`是1字节对齐的，而成员`b`是2字节对齐的，因此在`a`和`b`中，会自动添加空白的padding用于保证字节对齐。同理`c`是1字节对齐的，而`d`是4字节对齐的，因此在`c`和`d`间会自动添加3个padding。
+
+      如果想修改自动对齐方式，可以在结构体定义前添加`#pragma pack(N)`，其中`N`为N字节对齐。如下将`struct s`修改为1字节对齐后，其结构体大小为`20`字节:
+
+      ```
+      #pragma pack(1)
+      struct s {
+          char a;
+          short b;
+          char c;
+          int d;
+          float e;
+          double f;
+      }; 
+      ```
+
+      参考资料：
+      - [C语言中的字节对齐](https://developer.aliyun.com/article/20614)
+      - [Data structure alignment](https://en.wikipedia.org/wiki/Data_structure_alignment)
+    </details>
+
+9. 什么是内存泄漏？
+    
+    <details>
+      <summary>参考答案</summary>
+
+      C程序中允许使用`malloc`等函数在堆上申请内存，这部分内存是需要开发人员自行管理的，若申请的内存一直未释放或无法释放，最后会导致堆可用的空间越来越少，严重的会导致程序崩溃。常见的内存泄漏原因是申请了内存，但内存不再使用后却不释放。如下C代码中申请的内存`a`在退出函数时未释放，该情境即为内存泄漏场景：
+
+      ```c
+      void func() {
+          int *t = malloc(1000);
+      }
+      ```
+
+      避免内存泄漏主要有以下几种方法：
+      1. 代码检视
+      2. 代码静态扫描工具
+      3. 工具检测，如valgrind
+      
+      参考资料：
+      - [C内存泄漏-产生原因及排查方法](https://www.cnblogs.com/aghx/p/15254453.html)
+    </details>
+
+10. 大端小端是什么意思？如何判断当前CPU是大端还是小端？
+
+    <details>
+      <summary>参考答案</summary>
+      
+    </details>
+
+11. 浮点数如何判断是否等于某个值?
+    
+    <details>
+      <summary>参考答案</summary>
+
+      
+    </details>
+
+12. `malloc`的实现原理？
+    
+    <details>
+      <summary>参考答案</summary>
+
+      
+    </details>
+
+13. `typedef`和`#define`的区别？
+    
+    <details>
+      <summary>参考答案</summary>
+
+      
+    </details>
