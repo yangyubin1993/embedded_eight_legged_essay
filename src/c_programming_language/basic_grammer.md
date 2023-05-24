@@ -320,25 +320,98 @@ C语言基础语法知识
     <details>
       <summary>参考答案</summary>
       
+      大端模式(Big-endian)是指数据的高字节保存在内存的低地址而数据的低字节保存在内存的高地址。大端模式有点类似于字符串的存储方式——内存的地址从低到高，而数据从高到低存放。
+      小端模式(Little-endian)是指数据的高字节保存在内存的高地址而数据的低字节保存在内存的低地址。
+      之所以存在大小端模式，是因为我们的内存中每个地址单位对应一个字节（即8bit），但C语言中的`short`类型、`int`类型等是由多个字节组成的，对于16bit及以上的CPU来说，在处理这类多字节类型时就存在字节的组织问题。
+      要判断CPU使用大端还是小端可以直接解析`short`类型中低地址的值是高字节还是低字节，代码如下：
+      
+      ```c
+      #include <stdio.h>
+
+      int main() {
+          short a = 1;
+          printf("a is %s\n", *((char*)&a) == 0x1 ? "little-endian" : "big-endian");
+          return 0;
+      }
+      ```
+    
+      需要注意的是，不同的架构可能使用不同的大小端模式，如x86架构为小端模式，arm架构默认为小端模式，但也可以切换为大端模式。
+    
+      参考资料：
+      - [大小端模式](https://baike.baidu.com/item/大小端模式/6750542?fromtitle=大端小端&fromid=15925891&fr=aladdin)
     </details>
 
-11. 浮点数如何判断是否等于某个值?
+11. 如何判断两个浮点数是否相等?
     
     <details>
       <summary>参考答案</summary>
 
+      在C语言中，与浮点数相关的有两种类型: `float`及`double`，前者为单精度类型，后者为双精度类型。（`float`及`double`类型的存储方式可参考[IEEE标准](http://www.hlam.ece.ufl.edu/EEL4712/Labs/Lab6/IEEEStandard754FP.pdf)的规定）
+      由于浮点数的数据存储方式，在运算过程中可能存在精度问题，如下：
+
+      ```c
+      #include <stdio.h>
+
+      int main() {
+          double a = 0.15 + 0.15;
+          double b = 0.10 + 0.20;
       
+          printf("a(%lf) is %s to b(%lf)\n", a, a == b ? "euqal" : "not euqal", b);
+          return 0;
+      }
+      ```
+
+      上面代码的实际运行结果为:
+
+      ```
+      a(0.300000) is not euqal to b(0.300000)
+      ```
+      
+      在实际程序中，`a`和`b`的二进制表示分别如下：
+
+      ```
+      a: 0011 1111 1101 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011
+      b: 0011 1111 1101 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 0011 0100
+      ```
+
+      我们可以看到，即使`a`和`b`都是`0.3`，但在小数部分的最后3 bit实际上是有差异的。为了解决这类浮点数的比较问题，我们可以人为规定一个精度，当精度小于某个确定的值后可以近似地认为两个浮点数相等。在标准库的`float.h`头文件中就提供了精度宏：`FLT_EPSILON`及`DBL_EPSILON`分别代表`float`类型的精度及`double`类型的精度，修改后的浮点数比较代码如下：
+
+      ```c
+      #include <stdio.h>
+      #include <float.h>
+      #include <math.h>
+      int main() {
+          double a = 0.15 + 0.15;
+          double b = 0.10 + 0.20;
+      
+          printf("a(%lf) is %s to b(%lf)\n", a, fabs(a - b) < DBL_EPSILON ? "euqal" : "not euqal", b);
+          printBits(a);
+          printBits(b);
+          return 0;
+      }
+      ```
+
+      参考资料：
+      - [Comparison of a float with a value in C](https://www.geeksforgeeks.org/comparison-float-value-c/)
+      - [Difference between Single Precision and Double Precision](https://www.geeksforgeeks.org/difference-between-single-precision-and-double-precision/)
+      - [IEEE Standard 754 Floating-Point](http://www.hlam.ece.ufl.edu/EEL4712/Labs/Lab6/IEEEStandard754FP.pdf)
+  
     </details>
 
-12. `malloc`的实现原理？
+12. `typedef`和`#define`的区别？
     
     <details>
       <summary>参考答案</summary>
 
-      
+      `#define`和`typedef`均可用于定义类型别名。但其区别有：
+      1. `#define`作用于编译过程的预处理阶段而`typedef`作用于编译阶段
+      2. `typedef`仅用于定义类型别名，而`#define`还可以定义常量、代码块等
+
+      参考资料：
+      - [Are typedef and #define the same in c?](https://stackoverflow.com/questions/1666353/are-typedef-and-define-the-same-in-c)
     </details>
 
-13. `typedef`和`#define`的区别？
+13. `malloc`和`free`的实现原理？
     
     <details>
       <summary>参考答案</summary>
