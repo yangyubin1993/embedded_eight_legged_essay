@@ -411,10 +411,3 @@ C语言基础语法知识
       - [Are typedef and #define the same in c?](https://stackoverflow.com/questions/1666353/are-typedef-and-define-the-same-in-c)
     </details>
 
-13. `malloc`和`free`的实现原理？
-    
-    <details>
-      <summary>参考答案</summary>
-
-      
-    </details>

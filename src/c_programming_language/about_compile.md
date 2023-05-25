@@ -5,7 +5,7 @@ C语言编译相关知识
     <details>
       <summary>参考答案</summary>
     
-    C程序内存分配为五个区：
+    C程序内存分配为以下五个区：
     1. text (或code): 存储可执行代码，通常是固定大小而且是只读的。
     2. data： 存储`已初始化`的全局变量或静态局部变量。
     3. bss(Block Started by Symbol): 存储`未初始化`的全局变量或静态局部变量。
@@ -24,6 +24,7 @@ C语言编译相关知识
   
     即如果我们将无需初始化的变量放在bss区，bss区只存储标识符，那么只需要在程序启动时将需要初始化为0的未初始化变量初始化为0即可。这样可以减少程序大小，从而降低ROM空间的开销（在嵌入式设备上，采用更低规格的ROM可以降低成本）。
 
+    另外还需要注意的是，将程序划分为以上五个区只是典型的情况，不同的操作系统可能会有不同的实现。
     参考资料：
     - [Program Memory](https://en.wikipedia.org/wiki/Data_segment#Program_memory)
     - [.bss](https://en.wikipedia.org/wiki/.bss)
@@ -35,13 +36,48 @@ C语言编译相关知识
     <details>
       <summary>参考答案</summary>
 
+      gcc编译分为四个过程：预处理、编译、汇编、链接。四个过程的作用分别如下：
+
+      1. 预处理(c pre-processing)：C Pre-processing简写为`cpp`，在gcc编译过程中主要由`cpp`程序负责该过程的代码处理。该过程主要做一些文本的初始化处理(如移除注释)、源文件所需头文件(`#include`)内容拷贝到源文件中及将`macro`进行展开。预处理完后会生成`*.i`文件，是一下过程`编译`的的输入。在gcc上，可以使用如下命令对文件进行预处理：
+   
+      ```shell
+      gcc -E input.c -o input.i
+      ```
+
+      2. 编译(Compilation): 编译过程将前一过程生成的`*.i`文件进行编译以生成特定架构上的汇编代码。生成的汇编代码文件以`s`作为文件名后缀。在gcc上，可以使用如下命令生成文件的汇编代码：
+      
+      ```shell
+      gcc -S input.i
+      ```
+   
+      3. 汇编(Assembly)：汇编过程将汇编代码转化为机器代码（即二进制文件），生成的文件以`o`为文件名后缀。在gcc套件中，汇编过程是由`as`程序负责的，可以使用如下命令生成文件的机器代码：
+   
+      ```shell
+      gcc -c input.s
+      ```
+
+      4. 链接(Linker): 链接过程将生成的二进制文件与依赖的库文件进行链接从而生成可执行文件。链接过程由程序`ld`负责。
+   
+      参考资料：
+      - [Options Controlling the Kind of Output](https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html)
+      - [GCC Compilation Process](https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html)
     </details>
 
-3. makefile的作用？
+3. make的作用？
 
     <details>
       <summary>参考答案</summary>
 
+      make是软件开发过程中非常常用的一个工具，它读取工程中的`makefile`文件以自动构建软件。`makefile`文件主要格式为：`目标` + `依赖` + `规则`，如下：
+
+      ```makefile
+      target: dependencies
+      <TAB>command-1
+      <TAB>command-2
+      ```
+
+      参考资料：
+      - [wikipedia: make](https://zh.wikipedia.org/zh-cn/Make)
     </details>
 
 4. CMake的作用？
@@ -49,4 +85,13 @@ C语言编译相关知识
     <details>
       <summary>参考答案</summary>
 
+      CMake是一个跨平台的、开源的自动化建构系统，用于软件的自动构建、测试、打包和安装。CMake本身并不具备构建功能，而是通过读取`CMakeList.txt`生成其它构建系统的构建文件（如生成`make`系统的`makefile`、生成`Windows MSVC`的`projects/workspaces`）。再通过这些生成的构建文件去做软件的构建。
+      对C/C++程序来说，CMake的优点主要有：
+      1. 支持跨平台，如Linux和Windows
+      2. 脚本`较`makefile简单易读
+   
+      CMake的缺点也很明显：强大但也很复杂，调试麻烦，对开发人员要求较高。
+
+      参考资料：
+      - [wikipedia: CMake](https://en.wikipedia.org/wiki/CMake)
     </details>
