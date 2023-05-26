@@ -179,7 +179,7 @@ C语言基础语法知识
       
     </details>
 
-7. `extern "C"`的作用是什么？
+8. `extern "C"`的作用是什么？
     <details>
       <summary>参考答案</summary>
 
@@ -235,7 +235,7 @@ C语言基础语法知识
       - [extern C百度百科](https://baike.baidu.com/item/extern%20%22C%22/15267013)
     </details>
 
-8. 什么是字节对齐（数据结构对齐）？
+9. 什么是字节对齐（数据结构对齐）？
     <details>
       <summary>参考答案</summary>
 
@@ -293,7 +293,7 @@ C语言基础语法知识
       - [Data structure alignment](https://en.wikipedia.org/wiki/Data_structure_alignment)
     </details>
 
-9. 什么是内存泄漏？
+10. 什么是内存泄漏？
     
     <details>
       <summary>参考答案</summary>
@@ -315,7 +315,7 @@ C语言基础语法知识
       - [C内存泄漏-产生原因及排查方法](https://www.cnblogs.com/aghx/p/15254453.html)
     </details>
 
-10. 大端小端是什么意思？如何判断当前CPU是大端还是小端？
+11. 大端小端是什么意思？如何判断当前CPU是大端还是小端？
 
     <details>
       <summary>参考答案</summary>
@@ -341,7 +341,7 @@ C语言基础语法知识
       - [大小端模式](https://baike.baidu.com/item/大小端模式/6750542?fromtitle=大端小端&fromid=15925891&fr=aladdin)
     </details>
 
-11. 如何判断两个浮点数是否相等?
+12. 如何判断两个浮点数是否相等?
     
     <details>
       <summary>参考答案</summary>
@@ -398,7 +398,7 @@ C语言基础语法知识
   
     </details>
 
-12. `typedef`和`#define`的区别？
+13. `typedef`和`#define`的区别？
     
     <details>
       <summary>参考答案</summary>
