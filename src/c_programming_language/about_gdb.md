@@ -105,7 +105,17 @@ gdb使用相关知识
 	<details>
       <summary>参考答案</summary>
 
+	  `gdb`提供以下功能调试多线程程序：
+	  1. 新线程创建的自动提醒
+	  2. `thread <threadno>`命令用于在调试的进程间切换
+	  3. `info threads`命令用于查询所有已存在的线程
+	  4. `thread apply <threadno> <all> args`命令用于对指定的一条线程或多条指令应用指令
+      5. 用于线程的断点
+   
+	  需要注意的是，`threadno`是`gdb`为每个线程分配的线程ID，是一个内部ID
+
       参考资料：
+	  - [gdb面试](https://blog.csdn.net/cindywry/article/details/105436462)
 	  - [Debugging programs with multiple threads](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_24.html#SEC25)
     </details>
 
@@ -114,4 +124,36 @@ gdb使用相关知识
 	<details>
       <summary>参考答案</summary>
 
+	  `core`文件指`core dump file`，是操作系统在进程收到某些信号而终止时，将此时进程空间的内容及有关进程的状态的其它信息写入一个磁盘文件。`core`文件中的信息一般用于调试。
+	  程序自身的`core dump file`一般可以用于分析程序是在哪里错了，而外部程序触发的`core dump file`一般来于分析进程的运行情况，比如分析内存使用、线程状态等。
+	  `core dump`的缺点有：
+	  1. 性能问题：对进程进行core dump可能会耗费大量系统资源、造成内存清理的延迟，尤其是占用大量内存的进程。
+	  2. 磁盘空间问题：对进程进行core dump会占用大量磁盘空间。
+	  3. 安全问题：core文件可能包含敏感数据（如密码和密钥），这部分敏感数会被写入到磁盘。
+
+	  Linux上要去使能core dump功能，有以下方式：
+	  1. 使用`sysctl`设置`kernel.core_pattern`的值为`/dev/null`
+	  2. 按如下方式配置`/etc/systemd/coredump.conf.d/custom.conf`:
+   
+        ```
+		[Coredump]
+        Storage=none
+		```
+
+	  3. 按如下方式配置`/etc/security/limits.conf`:
+   
+        ```
+		* hard core 0
+		```
+
+	  4. 使用`ulimit`指令：`ulimit -c 0`
+
+	  使用`gdb`对已有进程生成`core dump file`的方式为：
+	  1. `gdb -p <pid>`启动对进程的调试，其中`<pid>`为进程的进程ID
+	  2. 在`gdb`中使用指令`generate-core-file`生成`core dump file`
+   
+	  参考资料：
+	  - [core(5) — Linux manual page](https://man7.org/linux/man-pages/man5/core.5.html)
+	  - [Core dump](https://wiki.archlinux.org/title/Core_dump)
+	  - [核心转储](https://zh.wikipedia.org/wiki/核心转储)
     </details>
