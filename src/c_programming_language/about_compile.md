@@ -95,3 +95,54 @@ C语言编译相关知识
       参考资料：
       - [wikipedia: CMake](https://en.wikipedia.org/wiki/CMake)
     </details>
+
+5. 解释编译器的前端和后端的区别。
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+6. 什么是交叉编译？为什么在嵌入式开发中需要使用交叉编译器？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+7. 什么是链接器？它的作用是什么？解释静态链接和动态链接的区别
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+8. 什么是库文件（Library）？解释静态库和动态库的区别，并讨论它们在嵌入式开发中的使用场景。
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+9.  请讨论一些常见的编译器选项和优化策略，以优化嵌入式软件的性能和大小。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+10. 解释编译器标志（Compiler Flag）-nostdlib的作用，并讨论在嵌入式开发中使用它的情况。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+11. 什么是目标文件和可执行文件？它们的区别是什么？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+12. 什么是交叉引用（Cross-Reference）？如何生成交叉引用报告？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+13. 解释链接时的符号解析过程是什么？包括全局符号和局部符号的解析。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+14. 什么是位置无关代码（Position-Independent Code，PIC）？它在嵌入式系统中的作用是什么？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>

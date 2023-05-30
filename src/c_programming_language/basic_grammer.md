@@ -411,3 +411,30 @@ C语言基础语法知识
       - [Are typedef and #define the same in c?](https://stackoverflow.com/questions/1666353/are-typedef-and-define-the-same-in-c)
     </details>
 
+14. `malloc`和`free`的实现原理？
+    
+    <details>
+      <summary>参考答案</summary>
+
+      在C程序中，程序可以使用`malloc`函数`动态`地申请内存空间，当申请的内存空间不再使用时，使用`free`函数进行释放。
+
+      `malloc`和`free`的具体实现与操作系统、CPU架构相关，详细可见`参考资料3`。下面主要介绍`glibc`的实现方式：
+      
+
+      参考资料：
+      - [malloc和free的实现原理解析](https://jacktang816.github.io/post/mallocandfree/)
+      - [How do malloc() and free() work?](https://stackoverflow.com/questions/1119134/how-do-malloc-and-free-work)
+      - [C dynamic memory allocation](https://en.wikipedia.org/wiki/C_dynamic_memory_allocation)
+      - [POSIX Memory Management](https://blog.pr4tt.com/2016/02/01/posix-memory-management/)
+      - [MallocInternals](https://sourceware.org/glibc/wiki/MallocInternals)
+    </details>
+15. 请解释C语言中的条件语句`if-else`和`switch-case`的用法和区别。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+16. 什么是指针数组和数组指针？请解释它们之间的区别。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>

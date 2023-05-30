@@ -157,3 +157,14 @@ gdb使用相关知识
 	  - [Core dump](https://wiki.archlinux.org/title/Core_dump)
 	  - [核心转储](https://zh.wikipedia.org/wiki/核心转储)
     </details>
+
+7. 如何使用GDB调试嵌入式目标设备？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+8. 如何使用GDB进行远程调试？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>

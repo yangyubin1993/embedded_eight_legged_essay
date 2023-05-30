@@ -21,3 +21,68 @@ C语言堆与线相关知识
       - [Stack frames](https://people.cs.rutgers.edu/~pxk/419/notes/frames.html)
       - [A Guide to ARM64 / AArch64 Assembly on Linux with Shellcodes and Cryptography](https://modexp.wordpress.com/2018/10/30/arm64-assembly/)
     </details>
+2. 解释堆栈溢出（Stack Overflow）是什么，以及如何避免它发生？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+3. 什么是栈指针（Stack Pointer）？它的作用是什么？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+4. 如何在嵌入式系统中检查和调试堆栈问题？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+5. 什么是堆栈大小（Stack Size）？如何确定适当的堆栈大小？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+6. 如何在编程中避免递归调用导致的堆栈溢出问题？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+7. 在嵌入式系统中如何分析和优化堆栈的使用？
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+8. 解释中断和异常处理中堆栈的使用方式和注意事项。
+   <details>
+      <summary>参考答案</summary>
+
+    </details>
+9.  在多线程环境中，如何管理和调试每个线程的堆栈？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+10. 解释嵌入式系统中的任务堆栈和中断堆栈的区别和用途。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+11. 嵌入式系统中的堆栈与常规计算机系统中的堆栈有何不同？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+12. 什么是堆栈回溯（Stack Trace）？如何在嵌入式系统中实现堆栈回溯？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+13. 什么是栈保护（Stack Guard）机制？如何防止栈溢出攻击？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+14. 在嵌入式系统中，如何监视和调试堆栈使用情况？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
