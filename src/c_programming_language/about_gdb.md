@@ -158,13 +158,27 @@ gdb使用相关知识
 	  - [核心转储](https://zh.wikipedia.org/wiki/核心转储)
     </details>
 
-7. 如何使用GDB调试嵌入式目标设备？
+7. 如何使用GDB进行远程调试？
    <details>
       <summary>参考答案</summary>
+	
+	  使用GDB进行远程调试通常需要以下步骤：
+	  1. 准备目标设备和调试主机：
+         - 确保目标设备和调试主机在同一网络中，并可以相互通信。
+         - 在目标设备上安装并运行GDB服务器软件，例如OpenOCD、J-Link GDB Server等。
+         - 在调试主机上安装GDB调试器。
+      2. 启动GDB服务器：
+         - 在目标设备上运行GDB服务器，配置它以监听特定的端口，例如TCP端口。
+      3. 连接到目标设备：
+         - 在调试主机上打开终端或命令行界面，启动GDB调试器。
+         - 使用GDB的"target remote"命令连接到目标设备的IP地址和端口，例如：`target remote <target_ip_address>:<port>`。
+      4. 加载和调试程序：
+         - 使用GDB的"file"命令加载目标设备上的可执行文件，例如：`file <executable_file>`。
+         - 设置断点、单步执行或其他调试操作，以控制程序的执行。
+         - 使用GDB的其他命令进行调试，例如查看变量、回溯函数调用等。
 
-    </details>
-8. 如何使用GDB进行远程调试？
-   <details>
-      <summary>参考答案</summary>
+	  需要注意的是，远程调试的具体步骤可能因目标设备和调试工具的不同而有所差异。建议参考相关的GDB调试器和GDB服务器的文档，以了解更详细的配置和使用说明。
 
+	  参考资料：
+      - [GDB Remote Serial Protocol](https://sourceware.org/gdb/onlinedocs/gdb/Remote-Protocol.html)
     </details>

@@ -414,13 +414,26 @@ C语言基础语法知识
 14. `malloc`和`free`的实现原理？
     
     <details>
-      <summary>参考答案</summary>
+      <summary>参考答案（答案来源于ChatGpt）</summary>
 
-      在C程序中，程序可以使用`malloc`函数`动态`地申请内存空间，当申请的内存空间不再使用时，使用`free`函数进行释放。
-
-      `malloc`和`free`的具体实现与操作系统、CPU架构相关，详细可见`参考资料3`。下面主要介绍`glibc`的实现方式：
+      `malloc`和`free`是C语言中用于动态内存管理的函数。
+      `malloc`函数用于在运行时动态分配指定大小的内存块。它的实现原理通常涉及底层的内存分配算法，例如堆（heap）管理。以下是一种常见的实现原理：
       
-
+      1. `malloc`的实现原理：
+         - `malloc`函数接收一个参数，即所需内存块的大小。
+         - `malloc`会在堆中寻找一块足够大的连续内存空间。
+         - 当找到合适的空间后，它会记录该块内存的大小并进行标记，以便稍后的内存释放使用。
+         - 返回指向该内存块的指针，供程序使用。
+      
+      2. `free`的实现原理：
+         - `free`函数接收一个指针参数，即要释放的内存块的起始地址。
+         - `free`会根据传入的指针找到对应的内存块，并将该内存块标记为可用。
+         - 释放的内存块可以被后续的`malloc`调用重新分配使用。
+      
+      实际的`malloc`和`free`实现可能会因操作系统、编译器和特定的堆管理器而有所不同。这些函数的底层实现通常涉及内存分配算法、堆的数据结构和管理机制。
+      
+      需要注意的是，使用`malloc`分配的内存需要在不再需要时使用`free`显式释放，以避免内存泄漏。如果不释放已分配的内存，会导致程序的内存消耗不断增加，最终可能导致系统资源不足的问题。
+      
       参考资料：
       - [malloc和free的实现原理解析](https://jacktang816.github.io/post/mallocandfree/)
       - [How do malloc() and free() work?](https://stackoverflow.com/questions/1119134/how-do-malloc-and-free-work)
@@ -428,13 +441,23 @@ C语言基础语法知识
       - [POSIX Memory Management](https://blog.pr4tt.com/2016/02/01/posix-memory-management/)
       - [MallocInternals](https://sourceware.org/glibc/wiki/MallocInternals)
     </details>
+
 15. 请解释C语言中的条件语句`if-else`和`switch-case`的用法和区别。
     <details>
-      <summary>参考答案</summary>
+      <summary>参考答案（答案来源于ChatGpt）</summary>
 
+      1. `if-else`用法: `if-else`语句用于根据一个条件的真假执行相应的代码块。如果条件为真，执行`if`后面的代码块；如果条件为假，执行`else`后面的代码块（如果有）
+      2. `switch-case`用法: `switch-case`语句用于根据一个表达式的值，从多个选项中选择一个执行相应的代码块。
+    
+      区别：
+      1. `if-else`语句用于对条件的真假进行判断。
+      2. `switch-case`语句用于对一个表达式的不同取值进行判断。
     </details>
+
 16. 什么是指针数组和数组指针？请解释它们之间的区别。
     <details>
       <summary>参考答案</summary>
 
+      1. 指针数组的英文为：`array of pointers`，它表示一个元素都是指针类型的数组。
+      2. 数组指针的英文为：`pointers to an array`，它表示一个指向数组的指针
     </details>
