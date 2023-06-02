@@ -216,3 +216,93 @@
 
       总体而言，硬实时系统对任务的截止期限有严格要求，必须在规定的时间内完成，而软实时系统的任务截止期限相对宽松，任务的延迟可以被容忍。根据具体的应用需求和实时性要求，选择合适的实时系统类型非常重要。
     </details>
+
+16. 请解释抢占式调度和非抢占式调度的区别。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+17. 解释进程和线程的概念，并比较它们之间的区别。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+18. 解释内存管理和虚拟内存的概念及其在操作系统中的作用.
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+19. 请解释中断处理和中断服务程序的概念
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+20. 什么是同步和互斥？如何实现线程同步和互斥？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+21. 什么是设备驱动程序？它们在操作系统中的作用是什么？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+22. 解释操作系统中的文件系统和存储管理。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+23. 请解释操作系统中的进程间通信（IPC）的概念和常见的 IPC 机制。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+24. 解释操作系统中的信号和信号处理程序的概念。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+25. 什么是系统调用？它们在操作系统中的作用是什么？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+26. 什么是虚拟内存和物理内存？它们之间的映射关系是怎样的？
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+27. 解释分页和分段的内存管理方式。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+28. 介绍中断向量表和中断优先级的概念。
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+29. 解释一下信号量和互斥锁的概念以及它们在多任务环境中的应用
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
+
+30. 请介绍一下常见的通信机制
+    <details>
+      <summary>参考答案</summary>
+
+    </details>
