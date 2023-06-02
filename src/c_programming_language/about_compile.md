@@ -194,7 +194,6 @@ C语言编译相关知识
       7. `-march`和`-mtune`：这些选项用于指定目标处理器的体系结构和微体系结构，以便编译器能够生成针对特定处理器优化的代码。
       8. `-falign-functions`和`-falign-loops`：这些选项控制函数和循环的对齐方式，以提高内存访问的效率。
       9. `-fno-unroll-loops`：此选项禁用循环展开优化，适用于循环次数较多或代码大小有限的情况。
-      10. `-fno-common`：此选项禁用对全局未初始化变量的共享存储，可以减小最终可执行文件的大小。
 
       参考资料：
       - [GCC Optimization Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
